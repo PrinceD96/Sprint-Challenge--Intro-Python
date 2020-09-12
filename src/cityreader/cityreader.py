@@ -37,18 +37,12 @@ def cityreader(cities=[]):
     # open csv file
     with open('src/cityreader/cities.csv', newline='') as cities_file:
         reader = csv.reader(cities_file)
-        # only read name, lat, and lon cols
-        included_cols = [0, 3, 4]
 
-        included_rows = []
         # skip the header
         next(reader)
 
         for row in reader:
-            included_rows = list(row[i] for i in included_cols)
-            city = City(included_rows[0], float(
-                included_rows[1]), float(included_rows[2]))
-            cities.append(city)
+            cities.append(City(row[0], float(row[3]), float(row[4])))
 
     return cities
 
